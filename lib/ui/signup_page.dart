@@ -128,6 +128,7 @@ class _SignupPageState extends State<SignupPage> {
                       customer_contact_number_controller.clear();
                       customer_password_controller.clear();
                       autoValidation = false;
+                      userLogedIn = true;
                       Navigator.push(
                           context, MaterialPageRoute(builder: (context) =>MyHomePage() ));
                     }

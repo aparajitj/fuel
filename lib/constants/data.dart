@@ -33,3 +33,5 @@ RegExp emailid_exp = new RegExp(emailid_pattern);
 
 bool autoValidation = false;
 bool showSignupPassword = false;
+
+bool userLogedIn = false;
