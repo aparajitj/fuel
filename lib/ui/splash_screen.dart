@@ -13,21 +13,20 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
    userSignupCheck() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-     bool userLogedIn  = prefs.getBool('userLogedIn')??false;
-    return userLogedIn;
-  }
-
-  startTime() async{
-   var _duration = Duration(seconds: 2);
-    return Timer(_duration,(){
-
-      userSignupCheck() == true ?
+     userLogedIn   = prefs.getBool('userLogedIn')??false;
+    if(userLogedIn == true)
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => MyHomePage())):
-
+          context, MaterialPageRoute(builder: (context) => MyHomePage()));
+    else
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => SignupPage()));
 
+  }
+
+   startTime() async{
+   var _duration = Duration(seconds: 2);
+    return Timer(_duration,(){
+      userSignupCheck();
     });
   }
 
