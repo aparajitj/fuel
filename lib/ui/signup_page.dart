@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fuel/constants/data.dart';
 import 'package:fuel/ui/app_layout.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class SignupPage extends StatefulWidget {
@@ -12,6 +13,12 @@ class _SignupPageState extends State<SignupPage> {
 
 
   final GlobalKey<FormState>  form_key = GlobalKey<FormState>();
+
+  void loginProcess() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('userLogedIn', true);
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +135,7 @@ class _SignupPageState extends State<SignupPage> {
                       customer_contact_number_controller.clear();
                       customer_password_controller.clear();
                       autoValidation = false;
-                      userLogedIn = true;
+                      loginProcess();
                       Navigator.push(
                           context, MaterialPageRoute(builder: (context) =>MyHomePage() ));
                     }

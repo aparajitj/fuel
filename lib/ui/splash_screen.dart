@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fuel/constants/data.dart';
+import 'package:fuel/ui/app_layout.dart';
 import 'dart:async';
 import 'package:fuel/ui/signup_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -8,10 +11,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+   userSignupCheck() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+     bool userLogedIn  = prefs.getBool('userLogedIn')??false;
+    return userLogedIn;
+  }
 
   startTime() async{
    var _duration = Duration(seconds: 2);
     return Timer(_duration,(){
+
+      userSignupCheck() == true ?
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MyHomePage())):
+
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => SignupPage()));
 
